@@ -7,6 +7,9 @@ git log                        查看git的操作日志
 
 git reset --hard HEAD^^    返回上上次提交的版本   HEAD^^ =  HEAD^2   ;
  --hard 返回到已提交的状态；--soft返回到未提交的状态；--mixed返回到已添加未提交的状态
+	
+	git reset --soft HEAD~1      取消提交(commit)，回到暂存区状态(Stage)
+	git reset --hard HEAD~1     彻底取消提交，并且回到未修改的状态，回到上一次提交的状态
 
 git diff HEAD -- readme.txt         查看工作区和版本库里面最新版本的区别
 
@@ -48,6 +51,27 @@ git branch -d dev                     删除分支，合并后就可以删除分
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+git checkout -b dev 。 git checkout 命令加上 -b 参数表示创建并切换，相当于 git branch dev  + git checkout dev 两条命令
+
+git branch  命令查看当前分支
+
+---------------------------------切换到dev分支----------------------------------------
+
+
+---------------------------------切换到dev分支----------------------------------------
 
 
 
