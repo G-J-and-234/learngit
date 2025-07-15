@@ -23,12 +23,17 @@ git checkout  branchName                                   可以切换分支
 	登陆GitHub，打开“Account settings”，“SSH Keys”页面：点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
 
 	连接远程仓库：git remote add origin git@github.com:G-J-and-234/learngit.git
+					git remote(远程) add(添加) origin(仓库) git(仓库名)@github.com(远程服务器):G-J-and-234(用户名)/learngit.git(仓库名)
 
 	首次推送：git push -u origin master      推送本地的master分支到远程库的master分支上。
 	首次推送需要添加 -u 实现建立跟踪关系，本地master和origin 的 master分支建立跟踪关系.
 	后续推送使用 git push 即可, 建立跟踪关系之后 git push == git push origin master ; git pull == git pull origin master
 
-git 
+
+SSH 警告： 初次使用 Git 的 clone或者 push时会出现SSH警告， 输入 yes即可
+
+git remote -v                            查看远程库信息
+git  remote rm origin              删除本地库和远程库的绑定关系
 
 
 
