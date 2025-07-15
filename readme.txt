@@ -38,6 +38,28 @@ git  remote rm origin              删除本地库和远程库的绑定关系
 前面的步骤是我们先创建一个本地库，然后上传到远程库，但大多数时候是我们从已经存在的远程库clone到本地
 git clone git@github.com:G-J-and-234/learngit.git
 
+git merge dev                          分支合并，将 dev 分支合并到 master 上面
+
+git branch -d dev                     删除分支，合并后就可以删除分支，分支相当于一个指针对于修改没有影响
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
