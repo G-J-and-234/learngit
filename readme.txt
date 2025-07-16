@@ -38,6 +38,8 @@ SSH 警告： 初次使用 Git 的 clone或者 push时会出现SSH警告， 输�
 git remote -v                            查看远程库信息
 git  remote rm origin              删除本地库和远程库的绑定关系
 
+
+---------------------------------------CLONE---------------------------------------
 前面的步骤是我们先创建一个本地库，然后上传到远程库，但大多数时候是我们从已经存在的远程库clone到本地
 git clone git@github.com:G-J-and-234/learngit.git
 
@@ -79,12 +81,49 @@ git switch master  |  git checkout master                  切换到 master 分�
 						我们在readme.txt 文件里面手动合并，之后再 add，commit
 
 
-
-
-在
->>>>>>> feature1
-
 Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存add, commit , 在master 的条件下git merge feature1 
+合并之后使用 git branch -d feature1 删除分支
+
+
+
+分支管理策略：
+	通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+	如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+	下面我们实战一下--no-ff方式的git merge：
+	
+	git switch -c dev  创建并切换到分支 dev,  git add readme.txt, git commit -m "---" 提交一个新的commit
+	git switch master 切换到分支 master， 
+	git merge --no-ff -m "merge with no-ff" dev, 将dev 合并到 master分支上面， 并且添加一个commit
+
+
+
+Bug 分支：
+	在软件开发中，bug就像家常便饭一样。我们通过对每个bug 新建一个临时分支来修复。修复后合并分支，然后将临时分支删除。
+	
+	当你接到一个修复一个代号101的bug的任务时，很自然地，你想创建一个分支issue-101来修复它，但是，等等，当前正在dev上进行的工作还没有提交：
+	
+	并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。但是，必须在两个小时内修复该bug，
+	怎么办？幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+	git stash               隐藏工作区状态
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
