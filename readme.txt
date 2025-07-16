@@ -49,28 +49,6 @@ git clone git@github.com:G-J-and-234/learngit.git
 ------------------------------------创建分支dev----------------------------------
 
 
-git merge dev                          分支合并，将 dev 分支合并到 master 上面
-
-git branch -d dev                     删除分支，合并后就可以删除分支，分支相当于一个指针对于修改没有影响
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 git checkout -b dev 。 git checkout 命令加上 -b 参数表示创建并切换，相当于 git branch dev  + git checkout dev 两条命令
 
@@ -83,11 +61,29 @@ git branch  命令查看当前分支
 
 
 
+git branch                                                                    查看分支
+
+git merge dev                                                              分支合并，将 dev 分支合并到 master 上面
+
+git branch dev                                                              创建分支
+git branch -d dev                                                         删除分支，合并后就可以删除分支，分支相当于一个指针对于修改没有影响
+
+git switch -c dev   |  git checkout -b dev                   创建并切换到分支dev
+
+git switch master  |  git checkout master                  切换到 master 分支
+
+
+
+解决合并分支的冲突：
+	git switch -c feature1  创建并切换分支到 feature1， 在 feature1 分支上面对readme.txt 进行修改添加一行  add, commit
+	git switch | checkout master  切换到master分支，  在master 分支上面对readme.txt 进行修改添加一行,  add, commit
+	git merge feature1        合并master 分支和feature1 分支，git会主动标记出两个分支的冲突之处，
+						我们在readme.txt 文件里面手动合并，之后再 add，commit
 
 
 
 
-
+在
 
 
 
