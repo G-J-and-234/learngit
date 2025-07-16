@@ -104,10 +104,13 @@ Bug 分支：
 	
 	并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。但是，必须在两个小时内修复该bug，
 	怎么办？幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
-	git stash               隐藏工作区状态
 
-	
 
+	git stash                                                  隐藏工作现场，待以后恢复现场继续工作，通常用在当前工作未提交，但需要创建新分支修改bug 的情况
+	git stash list                                            查看隐藏未提交工作状态列表
+        git stash apply | git stash apply @{0}    @后面是stash的标号，在stash list 查看。  恢复隐藏的工作状态，但是没有在stash list中删除隐藏记录
+	git stash drop                                         删除在 stash list 列表中隐藏的工作记录
+	git stash pop                                          恢复隐藏的工作状态，并删除 stash list 中隐藏的工作记录
 
 
 
