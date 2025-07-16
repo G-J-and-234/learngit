@@ -196,6 +196,11 @@ Feature 分支
 	先从本地删除：git tag -d v0.9
 	然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v0.9
 	要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
+
+
+
+
+idea 配置 git和github: https://blog.csdn.net/ITjavaxiaobai/article/details/122326046
 	
 
 
