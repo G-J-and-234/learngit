@@ -68,7 +68,7 @@ git merge dev                                                              分�
 git branch dev                                                              创建分支
 git branch -d dev                                                         删除分支，合并后就可以删除分支，分支相当于一个指针对于修改没有影响
 
-git switch -c dev   |  git checkout -b dev                   创建并切换到分支dev
+git switch -c dev   |  git checkout -b dev                   创建并切换到分支dev   git checkout -b dev origin/dev  创建并切换到基于远程dev分支的dev分支
 
 git switch master  |  git checkout master                  切换到 master 分支
 
@@ -116,15 +116,87 @@ Bug 分支：
 	git stash drop                                         删除在 stash list 列表中隐藏的工作记录
 	git stash pop                                          恢复隐藏的工作状态，并删除 stash list 中隐藏的工作记录
 
+	bug 分支只是用于在本地修复bug 使用，不需要推送给 origin
 
 
+Feature 分支
+	软件开发中，总有无穷无尽的新的功能要不断添加进来。
+	添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，所以，每添加一个新功能，
+	最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。
 
 
+	现在，你终于接到了一个新任务：开发代号为Vulcan的新功能，该功能计划用于下一代星际飞船。
+
+于是准备开发：
+
+	git switch -c feature-vulcan      创建feature-vulcan 分支
+	git add vulcan.py                       新功能文件 vulcan.py
+        git commit -m "add feature vulcan"   
+	git switch dev
+	git merge --no-ff -m "添加 vulcan 功能" feature-vulcan,    将feature 分支合并到dev 分支上面
+
+	如果项目取消了 Vulcan 功能使用 git branch -D feature-vilcan ,    使用 -D 强制删除 feature-vulcan 分支
+	
+	feature 分支是否推送到远程取决于开发伙伴是否需要改功能配合
 
 
+多人协作：
+	git remote                                                             查看远程库信息
+	git remote -v                                                         查看详细的远程库信息
+
+	git push origin master                                         推送 master 分支到远程仓库上，如果没有 master，系统会自动创建它
+	git push origin dev                                               推送 dev 分支到远程的仓库上， 如果没有 dev，系统会自动创建它
 
 
+	master分支是主分支，因此要时刻与远程同步；
+	dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+	bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+	feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
 
+	
+	git clone git@github.com:michaelliao/learngit.git                只能看到本地的master分支
+	git checkout -b dev origin/dev                                                  创建并切换到基于远程dev分支的dev分支
+	然后在本地的 dev 分支上面进行修改
+	git push origin dev                                                                      推送到远程的 dev 分支
+
+	但是如果开发同伴也对于 dev 分支 进行了修改，那就会push 失败
+	这时候我们想到 要先 pull , 然后在本地手动合并之后再 push
+	但是这时候我们pull 也会失败， 因为本地 dev 分支没有和远程的 dev 分支建立链接
+	git branch --set-upstream-to=origin/dev dev  | git branch -u origin/dev dev      两条都可以实现dev 分支之间的跟踪关系
+	然后 git pull 
+	然后手动合并冲突，然后 commit, 然后 git  push origin dev 	
+	
+
+因此，多人协作的工作模式通常是这样：
+
+	首先，可以尝试用git push origin <branch-name>推送自己的修改；
+	如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+	如果合并有冲突，则解决冲突，并在本地提交；
+	没有冲突或者解决掉冲突后，再用git push origin <branch-name>推送就能成功！
+	如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，
+	用命令git branch --set-upstream-to <branch-name> 	origin/<branch-name>。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+
+标签管理：
+	系统在某个 commit 的时候打上 tag,唯一确定了打标签时刻的版本。 
+	
+	git tag v1.0                                             在上次的 commit 上面创建标签
+	git tag v1.1  f52c633(commit id)          在指定的 commit 上面创建标签
+	git tag                                                     查看所有的标签
+	
+	标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。
+
+	git tag -d v0.1                                         删除标签
+	git push origin v1.0                                推送标签到远程
+	git push origin --tags				  一次性推送全部尚未推送到远程的本地标签
+
+	如果标签已经推送到远程，要删除远程标签就麻烦一点
+	先从本地删除：git tag -d v0.9
+	然后，从远程删除。删除命令也是push，但是格式如下：git push origin :refs/tags/v0.9
+	要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
+	
 
 
 
