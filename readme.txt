@@ -85,7 +85,7 @@ git branch  命令查看当前分支
 
 
 
-
+Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存add, commit , 在master 的条件下git merge feature1 
 
 
 
