@@ -61,7 +61,7 @@ git branch  命令查看当前分支
 ---------------------------------切换到dev分支----------------------------------------
 
 
-git branch                                                                    查看分支
+git branch                                                                    查看分支    git branch -a 查看所有分支
 
 git merge dev                                                              分支合并，将 dev 分支合并到 master 上面
 
@@ -201,6 +201,13 @@ Feature 分支
 
 
 idea 配置 git和github: https://blog.csdn.net/ITjavaxiaobai/article/details/122326046
+
+
+
+git 配置云雀研发云：
+	git config -l                                   查看git 全局配置信息
+	git config --global user.email zhang.yi@iwhalecloud.com
+	git config --global user.name "张易"
 	
 
 
